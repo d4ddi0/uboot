@@ -1,0 +1,12 @@
+if TARGET_EVI
+
+config SYS_BOARD
+	default "evi"
+
+config SYS_VENDOR
+	default "uniwest"
+
+config SYS_CONFIG_NAME
+	default "evi"
+
+endif

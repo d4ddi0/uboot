@@ -1,0 +1,7 @@
+MX6SABRESD BOARD
+M:	Chris Bonin <chris.bonin@uniwest.com>
+M:	Joshua Clayton <joshua.clayton@uniwest.com>
+S:	Maintained
+F:	board/uniwest/evi/
+F:	include/configs/evi.h
+F:	configs/evi_defconfig
