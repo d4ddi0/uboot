@@ -1605,3 +1605,20 @@ FORCE:
 # Declare the contents of the .PHONY variable as phony.  We keep that
 # information in a variable so we can use it in if_changed and friends.
 .PHONY: $(PHONY)
+
+# rpm target variables:
+TARGET := cortexa9hf_vfp_neon
+RPM_ROOT := $(CURDIR)/rpmroot
+RPM_FILE := $(RPM_ROOT)/RPMS/$(TARGET)/uboot-$(VERSION)-1.$(TARGET).rpm
+U_BOOT_BINARY=u-boot.imx
+
+# rpm install target:
+rpm: $(RPM_FILE)
+
+$(RPM_FILE): $(U_BOOT_BINARY)
+$(RPM_FILE): u-boot.spec
+	rpmbuild -bb \
+		--define "_topdir $(RPM_ROOT)" \
+		--define "_builddir $(CURDIR)" \
+		--define "_u_boot_ver $(VERSION)" \
+		--target $(TARGET) u-boot.spec
