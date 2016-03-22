@@ -1615,7 +1615,7 @@ U_BOOT_BINARY=u-boot.imx
 # rpm install target:
 rpm: $(RPM_FILE)
 
-$(RPM_FILE): $(U_BOOT_BINARY)
+$(RPM_FILE): $(U_BOOT_BINARY) env
 $(RPM_FILE): u-boot.spec
 	rpmbuild -bb \
 		--define "_topdir $(RPM_ROOT)" \

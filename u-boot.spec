@@ -24,7 +24,10 @@ make
 
 %install
 mkdir -p $RPM_BUILD_ROOT/boot/
+mkdir -p $RPM_BUILD_ROOT/sbin/
 cp u-boot.imx %{buildroot}/boot/u-boot.imx
+cp tools/env/fw_printenv %{buildroot}/sbin/fw_printenv
+cp tools/env/fw_printenv %{buildroot}/sbin/fw_setenv
 
 %clean
 rm -rf %{buildroot}/lib
@@ -45,5 +48,7 @@ dd if=/boot/u-boot.imx of=/dev/mmcblk0 seek=2 bs=512
 %files
 %defattr(-,root,root,-)
 "/boot/u-boot.imx"
+"/sbin/fw_printenv"
+"/sbin/fw_setenv"
 
 %changelog
