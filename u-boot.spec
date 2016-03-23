@@ -53,11 +53,11 @@ fi
 is_reg_xg()
 {
 	XG_SNS="100 101 102 103 104 105 106 107 108 110 111 112 113 114 115 116 117 118 119"
-	for SN in XG_SNS;
+	for SN in $XG_SNS;
 	do
-		[ $SN -eq $1 ] && return true
+		[ $SN -eq $1 ] && return 0
 	done
-	return false
+	return 1
 }
 
 dd if=/boot/u-boot.imx of=/dev/mmcblk0 seek=2 bs=512
@@ -65,7 +65,7 @@ dd if=/boot/u-boot.imx of=/dev/mmcblk0 seek=2 bs=512
 # no need to check serial numbers for non engineering units
 if [ "${INSTRSN}" -le "${ENGSN_UPPER}" ]; then
 	/sbin/fw_setenv fdt_file imx6q-evi-revxf.dtb
-elif [ is_reg_xg ${INSTRSN} ]; then
+elif is_reg_xg ${INSTRSN}; then
 	/sbin/fw_setenv fdt_file imx6q-evi-revxg.dtb
 else
 	/sbin/fw_setenv fdt_file imx6q-evi.dtb
